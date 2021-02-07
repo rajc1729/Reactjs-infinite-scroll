@@ -4,7 +4,7 @@
   "description": "Tutorial blog on implementing infinite scroll",
   "main": "src/server/index.js",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode=production",
     "client": "webpack serve --mode=development",
     "server": "nodemon src/server/index.js",
     "start": "concurrently \"npm run server\" \"npm run client\" \"json-server --watch db.json --port 3004\" "
