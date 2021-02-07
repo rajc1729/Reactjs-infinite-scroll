@@ -1,10 +1,16 @@
 import React from 'react';
+import ProfileCard from './components/card';
+import './app.css';
 
 
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="feed_container">
+      <ProfileCard
+      avatar = "https://robohash.org/eoseaqueconsequatur.jpg?size=100x100&set=set1"
+      firstName = "Raj"
+      lastName = "Chhatbar"
+      />
     </div>
   );
 }
