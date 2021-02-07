@@ -1,5 +1,5 @@
 import React from 'react';
-import './card.css';
+import './card.scss';
 
 
 function ProfileCard({avatar, firstName, lastName}) {
@@ -11,4 +11,16 @@ function ProfileCard({avatar, firstName, lastName}) {
   );
 }
 
-export default ProfileCard;
+function ProfileLoadingCard() {
+    return (
+      <div className="skeleton">
+              <p class="image"></p>
+              <p class="line"></p>
+      </div>
+    );
+  }
+
+
+
+export  {ProfileLoadingCard, ProfileCard};
+
