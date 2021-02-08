@@ -43,7 +43,7 @@ module.exports = {
             test: /\.(png|j?g|svg|gif)?$/,
             use: 'file-loader'
          }
-]
+   ]
    },
    plugins: [
       new HtmlWebPackPlugin({

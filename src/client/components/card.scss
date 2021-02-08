@@ -1,7 +1,7 @@
 .card_container{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width: 300px;
-    margin: auto;
+    margin: 10px auto;
     text-align: center;
     padding: 10px;
 }
@@ -27,7 +27,7 @@ $line-2-width: 80%;
 .skeleton {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 300px;
-  margin: auto;
+  margin: 10px auto;
   text-align: center;
   width: $skeleton-width;
   padding: 10px;

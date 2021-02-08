@@ -11,12 +11,16 @@ function ProfileCard({avatar, firstName, lastName}) {
   );
 }
 
-function ProfileLoadingCard() {
+function ProfileLoadingCard({number = 10}) {
     return (
-      <div className="skeleton">
-              <p class="image"></p>
-              <p class="line"></p>
-      </div>
+      [...Array(number)].map((e, i) => {
+        return (
+          <div key={i} className="skeleton">
+          <p className="image"></p>
+          <p className="line"></p>
+          </div>
+        )
+      })
     );
   }
 

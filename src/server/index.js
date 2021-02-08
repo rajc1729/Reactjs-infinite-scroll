@@ -15,32 +15,32 @@ app.get("/api/test", (req, res) =>
 
 app.get("/api/profile",async (req, res) =>{
   let page = req.query.page;
+  console.log("server ", page)
   const count = 30;
-  let url = `http://localhost:8008/profile_page=1`;
-  let next = 'http://localhost:8008/profile_page=2';
+
+  let next = null;
   let previous = null
 
   switch(page){
     case "1":
-      url = `http://localhost:8008/profile_page=1`;
-      next = 'http://localhost:8008/profile_page=2';
+      next = 'http://localhost:3000/api/profile?page=2';
       previous = null
       break
 
     case "2":
-      url = `http://localhost:8008/profile_page=2`;
-      next = 'http://localhost:8008/profile_page=3';
-      previous = 'http://localhost:8008/profile_page=1';
+      next = 'http://localhost:3000/api/profile?page=3';
+      previous = 'http://localhost:3000/api/profile?page=1';
       break
 
     case "3":
-      url = `http://localhost:8008/profile_page=3`;
       next = null;
-      previous = 'http://localhost:8008/profile_page=2';
+      previous = 'http://localhost:3000/api/profile?page=2';
       break
   }
-  const data = await fetch(url);
+  const data = await fetch(`http://localhost:8008/profile_page=${page}`);
   const profiles = await data.json();
+  const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+  await delay(500)
 
 
   return res.status(200).json({ "count": count, "next":next, "previous":previous, "data":profiles });
