@@ -15,7 +15,6 @@ app.get("/api/test", (req, res) =>
 
 app.get("/api/profile",async (req, res) =>{
   let page = req.query.page;
-  console.log("server ", page)
   const count = 30;
 
   let next = null;

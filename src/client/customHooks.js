@@ -1,28 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 
-const useDebouncedEffect = (effect, delay , deps) => {
-    const callback = useCallback(effect, deps);
-
-    useEffect(() => {
-        console.log("useeff-> debounce")
-        const handler = setTimeout(() => {
-            callback();
-        }, delay);
-
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [callback, delay]);
-}
-
 
 const useThrottledEffect = (callback, delay, deps = []) => {
     const lastRan = useRef(Date.now());
   
     useEffect(
       () => {
-          console.log("useeff-> throttle")
         const handler = setTimeout(function() {
           if (Date.now() - lastRan.current >= delay) {
             callback();
@@ -40,39 +24,38 @@ const useThrottledEffect = (callback, delay, deps = []) => {
 
 
 
-function throttle(callback, limit, time) {
-    var calledCount = 0;
-    var timeout = null;
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
-    return function () {
-        if (limit > calledCount) {
-            calledCount++;
-            callback(); 
-        }
-        if (!timeout) {
-            timeout = setTimeout(function () {
-                calledCount = 0
-                timeout = null;
-            }, time);
-        }
-    };
-}
 
 
 const infiniteScroll = (callback) => {
     const [isFetching, setIsFetching] = useState(false);
     const stop = useRef(false);
   
-  useThrottledEffect(() => {
-      window.addEventListener('scroll', throttledScroll());
-      return () => window.removeEventListener('scroll', throttledScroll())}, 500);
-  
-      useDebouncedEffect(() => {
-      if (!isFetching) {
-          return
-      }else{
-      callback()
-      }
+    useThrottledEffect(() => {
+    window.addEventListener('scroll', debounceScroll());
+    return () => window.removeEventListener('scroll', debounceScroll())
+    }, 500);
+
+    useThrottledEffect(() => {
+        if (!isFetching) {
+            return
+        }else{
+            callback()
+        }
     }, 500,[isFetching]);
   
     function handleScroll() {
@@ -81,8 +64,8 @@ const infiniteScroll = (callback) => {
       if (!stop.current) setIsFetching(true);
     }
   
-    function throttledScroll() {
-        return throttle(handleScroll, 2, 500)
+    function debounceScroll() {
+        return debounce(handleScroll, 100, false)
     }
   
     return [isFetching, setIsFetching, stop];

@@ -15,7 +15,6 @@ function App() {
 
   const getFeed = async () => {
     const res = await apiCall({ method: "GET" });
-    console.log(res)
     if (res === 500){
       SetAPIError(500)
     }
@@ -29,12 +28,10 @@ function App() {
 
     if(nextPage){
       const res = await apiCall({ method: "GET", page:nextPage});
-      console.log(res)
       if (res === 500){
         SetAPIError(500)
       }
       else{
-        console.log(res.data)
         setData([...data, ...res.data])
         setIsFetching(false);
         res.next ? setNextPage(nextPage + 1) : (setNextPage(null), stop.current = true);

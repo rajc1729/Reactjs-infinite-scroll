@@ -1,5 +1,4 @@
 export const apiCall = async ({ method, page=1, body, headers }) => {
-  console.log("............>",page)
     const apiBaseUrl = 'http://localhost:3000/api/profile';
   
     const url_ = `${apiBaseUrl}?page=${page}`;
