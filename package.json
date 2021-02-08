@@ -1,7 +1,7 @@
 {
-  "name": "infinite_scroll_tutorial_blog",
+  "name": "react-infinite-scroll-custom-hook-example",
   "version": "1.0.0",
-  "description": "Tutorial blog on implementing infinite scroll",
+  "description": "In this tutorial I have made a custom hook for implementing infinite scroll using debounce and throttling.",
   "main": "src/server/index.js",
   "scripts": {
     "build": "webpack --mode=production",
@@ -38,5 +38,12 @@
     "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "keywords": [
+    "React - js",
+    "Infinite-Scroll",
+    "throttling",
+    "debounce",
+    "hook"
+  ]
 }
