@@ -14,6 +14,7 @@ const useThrottledEffect = (callback, delay, deps = []) => {
     return () => {
       clearTimeout(handler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [delay, ...deps]);
 };
 
@@ -33,7 +34,7 @@ function debounce(func, wait, immediate) {
   };
 }
 
-const infiniteScroll = (callback) => {
+const useInfiniteScroll = (callback) => {
   const [isFetching, setIsFetching] = useState(false);
   const stop = useRef(false);
 
@@ -72,4 +73,4 @@ const infiniteScroll = (callback) => {
   return [isFetching, setIsFetching, stop];
 };
 
-export { infiniteScroll };
+export { useInfiniteScroll };
