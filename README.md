@@ -2,6 +2,8 @@
 
 I have made a custom hook from scratch for implementing infinite scroll using debounce and throttling.
 
+Check out this [Medium article](https://rajc1729.medium.com/create-a-production-ready-infinite-scrolling-in-react-js-using-power-of-debounce-throttle-and-38afa645ef4d)
+
 ## Installation
 
 Use the npm or yarn to inatall
